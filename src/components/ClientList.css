@@ -1,0 +1,27 @@
+.custom-title {
+    color: #39bbd6;
+    
+  }
+  
+  .custom-btn {
+    background-color: #287d91 !important;
+    color: white !important;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-btn:hover {
+    background-color: #2ea3bc !important;
+  }
+  
+  .pagination-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .page-indicator {
+    font-weight: bold;
+    margin: 0 10px;
+    color: #39bbd6;
+  }
+  

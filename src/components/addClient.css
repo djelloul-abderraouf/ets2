@@ -1,0 +1,14 @@
+.custom-title {
+    color: #39bbd6 !important; /* Changer la couleur du titre */
+  }
+  
+  .custom-btn {
+    background-color: #39bbd6 !important; /* Couleur de fond du bouton */
+    border: none; /* Retirer la bordure */
+    transition: background-color 0.3s ease; /* Transition fluide */
+  }
+  
+  .custom-btn:hover {
+    background-color: #2ea3bc !important; /* Légère variation au survol */
+  }
+  
