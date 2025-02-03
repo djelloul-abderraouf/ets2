@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/facture'; // ✅ Assurez-vous que l'URL correspond à votre backend
+const API_URL = 'https://ets-backend-1.onrender.com/api/facture'; // ✅ Assurez-vous que l'URL correspond à votre backend
 
 // ✅ Créer une Facture
 export const createFacture = async (factureData) => {

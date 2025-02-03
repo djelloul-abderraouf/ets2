@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/devis'; // ✅ Assurez-vous que l'URL correspond à votre backend
+const API_URL = 'https://ets-backend-1.onrender.com/api/devis'; // ✅ Assurez-vous que l'URL correspond à votre backend
 
 // ✅ Créer un devis
 export const createDevis = async (devisData) => {

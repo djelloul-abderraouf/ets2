@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/orders';
+const API_URL = 'https://ets-backend-1.onrender.com/api/orders';
 
 export const createOrder = (orderData) => {
     return axios.post(`${API_URL}/create`, orderData);
