@@ -43,7 +43,7 @@ const PrintOrder = () => {
                 </div>
                 <hr />
 
-                <h4 className="text-center">Bon de Commande #{order.orderNumber}</h4>
+                <h4 className="text-center">Bon Numéro #{order.orderNumber}</h4>
                 <p className="text-center"><strong>Date :</strong> {new Date(order.date).toLocaleDateString()}</p>
                 <p className="text-center"><strong>Client :</strong> {order.clientId?.nom} {order.clientId?.prenom}</p>
 

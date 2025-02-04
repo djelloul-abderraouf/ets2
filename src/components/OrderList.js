@@ -4,7 +4,8 @@ import { createDevis } from '../services/devisService';
 import { createFacture } from '../services/factureService';
 import OrderModal from './OrderModal';
 import { useNavigate } from 'react-router-dom';
-import './ClientList.css'; // Import du CSS personnalisé
+import { CheckCircle, XCircle, Package, Clock } from 'lucide-react';
+import './ClientList.css';
 
 const OrderList = () => {
     const [orders, setOrders] = useState([]);
@@ -79,18 +80,17 @@ const OrderList = () => {
                 produits: order.produits,
                 dateCreation: new Date(),
             };
-            console.log('Données envoyées:', factureData); // Log des données envoyées
-    
+            console.log('Données envoyées:', factureData);
+
             const response = await createFacture(factureData);
-            console.log('Réponse du serveur:', response); // Log de la réponse du serveur
-    
+            console.log('Réponse du serveur:', response);
+
             alert('✅ Facture créée avec succès !');
         } catch (error) {
             console.error('Erreur lors de la création de la facture:', error);
             alert(`❌ Une erreur est survenue : ${error.response?.data?.message || error.message}`);
         }
     };
-    
 
     const indexOfLastOrder = currentPage * ordersPerPage;
     const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
@@ -165,8 +165,8 @@ const OrderList = () => {
                                     </td>
                                     <td>{(order.montantTotal || 0).toFixed(2)}</td>
                                     <td>{new Date(order.date).toLocaleDateString()}</td>
-                                    <td>{order.isPaid ? '✅ Payé' : '❌ Non payé'}</td>
-                                    <td>{order.isDelivered ? '📦 Livré' : '⏳ En attente'}</td>
+                                    <td>{order.isPaid ? <CheckCircle color="green" /> : <XCircle color="red" />}</td>
+                                    <td>{order.isDelivered ? <Package color="blue" /> : <Clock color="orange" />}</td>
                                     <td style={{ textAlign: 'center' }}>
                                         <div className="d-flex justify-content-center gap-2">
                                             <button
