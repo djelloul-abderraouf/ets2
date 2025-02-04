@@ -79,13 +79,18 @@ const OrderList = () => {
                 produits: order.produits,
                 dateCreation: new Date(),
             };
-            await createFacture(factureData);
-            alert('✅ Facture créé avec succès !');
+            console.log('Données envoyées:', factureData); // Log des données envoyées
+    
+            const response = await createFacture(factureData);
+            console.log('Réponse du serveur:', response); // Log de la réponse du serveur
+    
+            alert('✅ Facture créée avec succès !');
         } catch (error) {
-            console.error('Erreur lors de la création du Facture:', error);
-            alert('❌ Une erreur est survenue lors de la création du Facture.');
+            console.error('Erreur lors de la création de la facture:', error);
+            alert(`❌ Une erreur est survenue : ${error.response?.data?.message || error.message}`);
         }
     };
+    
 
     const indexOfLastOrder = currentPage * ordersPerPage;
     const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
