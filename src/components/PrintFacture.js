@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFacture } from '../services/factureService';
+import { Loader } from 'lucide-react';
 import logo from '../pages/logo.webp';
 
 const PrintFacture = () => {
     const { factureId } = useParams();
     const [facture, setFacture] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchFacture = async () => {
+            setLoading(true);
             try {
                 const response = await getFacture();
                 const foundFacture = response.find(d => d._id === factureId);
                 setFacture(foundFacture);
             } catch (error) {
                 console.error('Erreur lors de la récupération du Facture:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -31,8 +36,17 @@ const PrintFacture = () => {
         window.location.reload();
     };
 
+    if (loading) {
+        return (
+            <div className="text-center" style={{ padding: '20px' }}>
+                <Loader className="animate-spin" size={48} />
+                <p>Chargement du facture en cours...</p>
+            </div>
+        );
+    }
+
     if (!facture) {
-        return <p>Chargement du facture...</p>;
+        return <p>Aucun facture trouvé.</p>;
     }
 
     return (
@@ -65,7 +79,6 @@ const PrintFacture = () => {
                             <th style={{ padding: '15px', border: 'none', borderTopRadius: '8px', borderBottomRadius: '8px', textAlign: 'center' }}>Produit</th>
                             <th style={{ padding: '15px', border: 'none', textAlign: 'center' }}>Quantité</th>
                             <th style={{ padding: '15px', border: 'none', textAlign: 'center' }}>Prix Unitaire (DA)</th>
-                            {/* <th style={{ padding: '15px', border: 'none', borderTopRightRadius: '8px', borderBottomRightRadius: '8px', textAlign: 'center' }}>Remarque</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -74,7 +87,6 @@ const PrintFacture = () => {
                                 <td style={{ padding: '15px', border: 'none', textAlign: 'center' }}>{produit.nom}</td>
                                 <td style={{ padding: '15px', border: 'none', textAlign: 'center' }}>{produit.quantite}</td>
                                 <td style={{ padding: '15px', border: 'none', textAlign: 'center' }}>{produit.prixUnitaire.toFixed(2)}</td>
-                                {/* <td style={{ padding: '15px', border: 'none', textAlign: 'center' }}>{produit.remarque || '-'}</td> */}
                             </tr>
                         ))}
                     </tbody>

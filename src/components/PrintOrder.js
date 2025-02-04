@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOrders } from '../services/orderService';
+import { Loader } from 'lucide-react';
 import './PrintOrder.css';
 import logo from '../pages/logo.webp';
 
 const PrintOrder = () => {
     const { orderId } = useParams();
     const [order, setOrder] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchOrder = async () => {
+            setLoading(true);
             try {
                 const response = await getOrders();
                 const foundOrder = response.data.find((o) => o._id === orderId);
                 setOrder(foundOrder);
             } catch (error) {
                 console.error('Erreur lors de la récupération du bon de commande:', error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchOrder();
@@ -31,8 +36,17 @@ const PrintOrder = () => {
         window.location.reload();
     };
 
+    if (loading) {
+        return (
+            <div className="text-center" style={{ padding: '20px' }}>
+                <Loader className="animate-spin" size={48} />
+                <p>Chargement du bon en cours...</p>
+            </div>
+        );
+    }
+
     if (!order) {
-        return <p>Chargement du bon de commande...</p>;
+        return <p>Aucun bon trouvé.</p>;
     }
 
     return (
@@ -60,8 +74,6 @@ const PrintOrder = () => {
 
                 <button className="btn btn-success print-btn" onClick={handlePrint}>Imprimer</button>
             </div>
-
-           
         </div>
     );
 };
