@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getDevis, deleteDevis, updateDevis } from '../services/devisService';
 import { useNavigate } from 'react-router-dom';
-import { LoaderCircle } from 'lucide-react';
+import { Loader } from 'lucide-react';
 import './ClientList.css';
 
 const DevisList = () => {
@@ -129,7 +129,7 @@ const DevisList = () => {
 
                 {loading ? (
                     <div className="text-center">
-                        <LoaderCircle className="animate-spin" size={48} />
+                        <Loader className="animate-spin" size={48} />
                         <p>Chargement des devis en cours...</p>
                     </div>
                 ) : currentDevis.length === 0 ? (
