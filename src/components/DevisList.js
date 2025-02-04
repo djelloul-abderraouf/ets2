@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getDevis, deleteDevis, updateDevis } from '../services/devisService';
 import { useNavigate } from 'react-router-dom';
 import './ClientList.css';
-import { CheckCircle, XCircle, Package, Clock, Loader } from 'lucide-react';
 
 const DevisList = () => {
     const [devisList, setDevisList] = useState([]);
@@ -123,12 +122,7 @@ const DevisList = () => {
                     </div>
                 </div>
 
-                {loading ? (
-                    <div className="text-center">
-                        <Loader className="animate-spin" size={48} />
-                        <p>Chargement des données...</p>
-                    </div>
-                ) : currentDevis.length === 0 ? (
+                {currentDevis.length === 0 ? (
                     <p>Aucun devis trouvé.</p>
                 ) : (
                     <table className="table table-bordered table-striped">
