@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getDevis, deleteDevis, updateDevis } from '../services/devisService';
 import { useNavigate } from 'react-router-dom';
+import { LoaderCircle } from 'lucide-react';
 import './ClientList.css';
 
 const DevisList = () => {
@@ -9,6 +10,7 @@ const DevisList = () => {
     const [selectedDevis, setSelectedDevis] = useState(null);
     const [formData, setFormData] = useState({ produits: [], clientId: '', montantTotal: 0 });
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     const devisPerPage = 25;
     const navigate = useNavigate();
 
@@ -17,11 +19,14 @@ const DevisList = () => {
     }, []);
 
     const fetchDevis = async () => {
+        setLoading(true);
         try {
             const response = await getDevis();
             setDevisList(response.reverse());
         } catch (error) {
             console.error('Erreur lors de la récupération des devis:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -122,7 +127,12 @@ const DevisList = () => {
                     </div>
                 </div>
 
-                {currentDevis.length === 0 ? (
+                {loading ? (
+                    <div className="text-center">
+                        <LoaderCircle className="spinner" size={48} />
+                        <p>Chargement des devis en cours...</p>
+                    </div>
+                ) : currentDevis.length === 0 ? (
                     <p>Aucun devis trouvé.</p>
                 ) : (
                     <table className="table table-bordered table-striped">
