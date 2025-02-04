@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getFacture, deleteFacture, updateFacture } from '../services/factureService';
 import { useNavigate } from 'react-router-dom';
-import './ClientList.css'; // Import du CSS personnalisé
+import { Loader } from 'lucide-react';
+import './ClientList.css';
 
 const FactureList = () => {
     const [factureList, setFactureList] = useState([]);
@@ -9,6 +10,7 @@ const FactureList = () => {
     const [selectedFacture, setSelectedFacture] = useState(null);
     const [formData, setFormData] = useState({ produits: [], clientId: '', montantTotal: 0 });
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(false);
     const facturePerPage = 25;
     const navigate = useNavigate();
 
@@ -17,11 +19,14 @@ const FactureList = () => {
     }, []);
 
     const fetchFacture = async () => {
+        setLoading(true);
         try {
             const response = await getFacture();
             setFactureList(response.reverse());
         } catch (error) {
             console.error('Erreur lors de la récupération des Facture:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -122,7 +127,12 @@ const FactureList = () => {
                     </div>
                 </div>
 
-                {currentFacture.length === 0 ? (
+                {loading ? (
+                    <div className="text-center">
+                        <Loader className="animate-spin" size={48} />
+                        <p>Chargement des factures en cours...</p>
+                    </div>
+                ) : currentFacture.length === 0 ? (
                     <p>Aucun Facture trouvé.</p>
                 ) : (
                     <table className="table table-bordered table-striped">
@@ -151,7 +161,7 @@ const FactureList = () => {
                                     <td>{(facture.montantTotal || 0).toFixed(2)} DA</td>
                                     <td>{new Date(facture.dateCreation).toLocaleDateString()}</td>
                                     <td>
-                                    <button
+                                        <button
                                             className="btn btn-primary btn-sm me-2"
                                             onClick={() => handlePrintFacture(facture._id)}
                                         >
@@ -175,8 +185,6 @@ const FactureList = () => {
                         </tbody>
                     </table>
                 )}
-
-               
 
                 {selectedFacture && (
                     <div className="modal show d-block" tabIndex="-1">
