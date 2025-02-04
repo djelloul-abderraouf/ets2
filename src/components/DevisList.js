@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getDevis, deleteDevis, updateDevis } from '../services/devisService';
 import { useNavigate } from 'react-router-dom';
-import './ClientList.css'; // Import du CSS personnalisé
+import './ClientList.css';
 
 const DevisList = () => {
     const [devisList, setDevisList] = useState([]);
@@ -121,9 +121,6 @@ const DevisList = () => {
                         </button>
                     </div>
                 </div>
-                
-
-                
 
                 {currentDevis.length === 0 ? (
                     <p>Aucun devis trouvé.</p>
@@ -154,32 +151,32 @@ const DevisList = () => {
                                     <td>{(devis.montantTotal || 0).toFixed(2)} DA</td>
                                     <td>{new Date(devis.dateCreation).toLocaleDateString()}</td>
                                     <td>
-                                    <button
-                                            className="btn btn-primary btn-sm me-2"
-                                            onClick={() => handlePrintDevis(devis._id)}
-                                        >
-                                            Imprimer
-                                        </button>
-                                        <button
-                                            className="btn btn-warning btn-sm me-2"
-                                            onClick={() => handleEditDevis(devis)}
-                                        >
-                                            Modifier
-                                        </button>
-                                        <button
-                                            className="btn btn-danger btn-sm"
-                                            onClick={() => handleDeleteDevis(devis._id)}
-                                        >
-                                            Supprimer
-                                        </button>
+                                        <div className="d-flex justify-content-center flex-wrap gap-2">
+                                            <button
+                                                className="btn btn-primary btn-sm"
+                                                onClick={() => handlePrintDevis(devis._id)}
+                                            >
+                                                Imprimer
+                                            </button>
+                                            <button
+                                                className="btn btn-warning btn-sm"
+                                                onClick={() => handleEditDevis(devis)}
+                                            >
+                                                Modifier
+                                            </button>
+                                            <button
+                                                className="btn btn-danger btn-sm"
+                                                onClick={() => handleDeleteDevis(devis._id)}
+                                            >
+                                                Supprimer
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 )}
-
-                
 
                 {selectedDevis && (
                     <div className="modal show d-block" tabIndex="-1">
