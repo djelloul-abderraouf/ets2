@@ -4,7 +4,7 @@ import { createDevis } from '../services/devisService';
 import { createFacture } from '../services/factureService';
 import OrderModal from './OrderModal';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle, XCircle, Package, Clock } from 'lucide-react';
+import { CheckCircle, XCircle, Package, Clock, Loader } from 'lucide-react';
 import './ClientList.css';
 
 const OrderList = () => {
@@ -13,29 +13,36 @@ const OrderList = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(true);
     const ordersPerPage = 5;
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchOrders = async () => {
+            setLoading(true);
             try {
                 const response = await getOrders();
                 setOrders(response.data);
                 setFilteredOrders(response.data);
             } catch (error) {
                 console.error('Erreur lors de la récupération des bons de commande:', error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchOrders();
     }, []);
 
     const handleUpdate = async () => {
+        setLoading(true);
         try {
             const response = await getOrders();
             setOrders(response.data);
             setFilteredOrders(response.data);
         } catch (error) {
             console.error('Erreur lors de la mise à jour des commandes:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -131,7 +138,12 @@ const OrderList = () => {
                     </div>
                 </div>
 
-                {currentOrders.length === 0 ? (
+                {loading ? (
+                    <div className="text-center">
+                        <Loader className="animate-spin" size={48} />
+                        <p>Chargement des données...</p>
+                    </div>
+                ) : currentOrders.length === 0 ? (
                     <p>Aucun bon de commande trouvé.</p>
                 ) : (
                     <table className="table table-bordered text-center">
