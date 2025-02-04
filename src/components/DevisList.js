@@ -129,7 +129,7 @@ const DevisList = () => {
 
                 {loading ? (
                     <div className="text-center">
-                        <LoaderCircle className="spinner" size={48} />
+                        <LoaderCircle className="animate-spin" size={48} />
                         <p>Chargement des devis en cours...</p>
                     </div>
                 ) : currentDevis.length === 0 ? (
