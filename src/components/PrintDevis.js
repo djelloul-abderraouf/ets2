@@ -59,8 +59,8 @@ const PrintDevis = () => {
                         <p>lot N°2 Hmaidi Boufarik W.Blida ALGERIE</p>
                         <p>Téléphone: 025 28 62 66 / 025 28 62 63</p>
                         <p>Email: etslectronic@gmail.com</p>
-                        <p>RC: </p>
-                        <p>NIF: </p>
+                        <p>RC: 09/00 4054926A09</p>
+                        <p>NIF: 28409010316619409000 </p>
                     </div>
 
                     <div>
