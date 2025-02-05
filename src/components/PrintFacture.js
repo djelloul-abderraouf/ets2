@@ -60,6 +60,7 @@ const PrintFacture = () => {
                         <p>Téléphone: 025 28 62 66 / 025 28 62 63</p>
                         <p>Email: etslectronic@gmail.com</p>
                         <p>RC: </p>
+                        <p>NIF: </p>
                     </div>
 
                     <div>
