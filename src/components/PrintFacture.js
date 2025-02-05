@@ -59,6 +59,7 @@ const PrintFacture = () => {
                         <p>lot N°2 Hmaidi Boufarik W.Blida ALGERIE</p>
                         <p>Téléphone: 025 28 62 66 / 025 28 62 63</p>
                         <p>Email: etslectronic@gmail.com</p>
+                        <p>RC: </p>
                     </div>
 
                     <div>
