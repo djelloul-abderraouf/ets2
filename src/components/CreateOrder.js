@@ -15,7 +15,7 @@ const CreateOrder = () => {
     useEffect(() => {
         const fetchClients = async () => {
             try {
-                const response = await getClients();
+                const response = await getClients('', 1, 1000); // ou une valeur plus grande selon ton besoin
                 setClients(Array.isArray(response.data.clients) ? response.data.clients : []);
             } catch (error) {
                 console.error('Erreur lors de la récupération des clients:', error);
