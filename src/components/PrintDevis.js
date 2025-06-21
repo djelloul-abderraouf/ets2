@@ -57,7 +57,7 @@ const PrintDevis = () => {
                     <div>
                         <h2 style={{ color: '#333' }}>ETS LAKHDARI</h2>
                         <p>lot N°2 Hmaidi Boufarik W.Blida ALGERIE</p>
-                        <p>Téléphone: 025 28 62 66 / 025 28 62 63</p>
+                        <p>Téléphone: 028 37 67 09 / 028 37 78 11</p>
                         <p>Email: etslectronic@gmail.com</p>
                         <p>RC: 09/00 4054926A09</p>
                         <p>NIF: 28409010316619409000 </p>
