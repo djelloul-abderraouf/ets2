@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import CustomSignIn from '../src/components/CustomSignIn';
+
 import {
   SignIn,
   SignUp,
@@ -105,8 +107,9 @@ function App() {
               <SignedIn><AddClient /></SignedIn>
             </>
           } />
+<Route path="/sign-in" element={<CustomSignIn />} />
 
-          <Route path="/sign-in" element={
+          {/* <Route path="/sign-in" element={
             <div style={{
               display: 'flex',
               justifyContent: 'center',
@@ -140,7 +143,7 @@ function App() {
                 }}
               />
             </div>
-          } />
+          } /> */}
 
           <Route path="/sign-up" element={
             <div style={{
