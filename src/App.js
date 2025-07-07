@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import CustomSignIn from '../src/components/CustomSignIn';
+
 
 import {
   SignIn,
@@ -84,7 +84,7 @@ function App() {
                   </Link>
                 </li>
                 <li className="nav-item ms-3">
-                  <UserButton afterSignOutUrl="/sign-in" />
+                  <UserButton afterSignOutUrl="https://central-cub-96.accounts.dev/sign-in?redirect_url=http%3A%2F%2Flocalhost%3A3000%2F" />
                 </li>
               </SignedIn>
 
@@ -107,9 +107,8 @@ function App() {
               <SignedIn><AddClient /></SignedIn>
             </>
           } />
-<Route path="/sign-in" element={<CustomSignIn />} />
 
-          {/* <Route path="/sign-in" element={
+          <Route path="/sign-in" element={
             <div style={{
               display: 'flex',
               justifyContent: 'center',
@@ -143,7 +142,7 @@ function App() {
                 }}
               />
             </div>
-          } /> */}
+          } />
 
           <Route path="/sign-up" element={
             <div style={{

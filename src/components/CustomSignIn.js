@@ -1,4 +1,4 @@
-// src/pages/CustomSignIn.js
+// src/components/CustomSignIn.js
 import React from 'react';
 import { SignIn } from '@clerk/clerk-react';
 
@@ -9,7 +9,7 @@ export default function CustomSignIn() {
       justifyContent: 'center',
       alignItems: 'center',
       height: '100vh',
-      backgroundColor: '#0f0f12', // noir
+      backgroundColor: '#0f0f12'
     }}>
       <SignIn
         routing="path"
@@ -23,7 +23,7 @@ export default function CustomSignIn() {
           elements: {
             card: {
               boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-              backgroundColor: '#18181b', // fond sombre
+              backgroundColor: '#18181b',
               color: 'white'
             },
             formButtonPrimary: {
