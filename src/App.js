@@ -115,8 +115,78 @@ function App() {
           } />
 
           {/* Pages d'authentification */}
-          <Route path="/sign-in" element={<SignIn routing="path" path="/sign-in" />} />
-          <Route path="/sign-up" element={<SignUp routing="path" path="/sign-up" />} />
+          <Route path="/sign-in" element={
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh', // toute la hauteur de l’écran
+    backgroundColor: '#f9f9f9' // (optionnel) fond plus doux
+  }}>
+    <SignIn
+      routing="path"
+      path="/sign-in"
+      appearance={{
+        variables: {
+          colorPrimary: '#39bbd6',
+          fontFamily: 'Arial, sans-serif',
+          borderRadius: '8px',
+        },
+        elements: {
+          card: {
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            backgroundColor: '#fff',
+          },
+          formButtonPrimary: {
+            backgroundColor: '#39bbd6',
+            color: 'white',
+            fontWeight: 'bold',
+          },
+          logoBox: {
+            display: 'none'
+          }
+        }
+      }}
+    />
+  </div>
+} />
+
+<Route path="/sign-up" element={
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
+    backgroundColor: '#f9f9f9'
+  }}>
+    <SignUp
+      routing="path"
+      path="/sign-up"
+      appearance={{
+        variables: {
+          colorPrimary: '#39bbd6',
+          fontFamily: 'Arial, sans-serif',
+          borderRadius: '8px',
+        },
+        elements: {
+          card: {
+            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+            backgroundColor: '#fff',
+          },
+          formButtonPrimary: {
+            backgroundColor: '#39bbd6',
+            color: 'white',
+            fontWeight: 'bold',
+          },
+          logoBox: {
+            display: 'none'
+          }
+        }
+      }}
+    />
+  </div>
+} />
+
 
           {/* Pages sécurisées */}
           <Route path="/clients" element={<SignedIn><ClientList /></SignedIn>} />
