@@ -5,14 +5,15 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 
+import { ClerkProvider } from '@clerk/clerk-react';
+
+const PUBLISHABLE_KEY = "pk_test_Y2VudHJhbC1jdWItOTYuY2xlcmsuYWNjb3VudHMuZGV2JA"; // remplace par ta vraie clé Clerk
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </ClerkProvider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
