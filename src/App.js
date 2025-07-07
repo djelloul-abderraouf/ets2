@@ -8,7 +8,6 @@ import {
   SignedOut,
   RedirectToSignIn
 } from '@clerk/clerk-react';
-
 import {
   UserPlus,
   Users,
@@ -37,7 +36,7 @@ import logo from './pages/logo.webp';
 function App() {
   return (
     <Router>
-      {/* Navigation */}
+      {/* Navbar */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm" style={{ borderBottom: '4px solid #39bbd6' }}>
         <div className="container">
           <Link className="navbar-brand fw-bold d-flex align-items-center" to="/">
@@ -51,7 +50,6 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto d-flex align-items-center">
 
-              {/* Liens visibles uniquement si connecté */}
               <SignedIn>
                 <li className="nav-item">
                   <Link className="nav-link d-flex align-items-center" to="/">
@@ -83,16 +81,11 @@ function App() {
                     <Clipboard size={18} className="me-2" /> Les Factures
                   </Link>
                 </li>
-              </SignedIn>
-
-              {/* Bouton utilisateur (profil + déconnexion) */}
-              <SignedIn>
                 <li className="nav-item ms-3">
                   <UserButton afterSignOutUrl="/sign-in" />
                 </li>
               </SignedIn>
 
-              {/* Lien de connexion si non connecté */}
               <SignedOut>
                 <li className="nav-item">
                   <Link className="nav-link" to="/sign-in">Connexion</Link>
@@ -103,10 +96,9 @@ function App() {
         </div>
       </nav>
 
-      {/* Contenu de la page */}
+      {/* Contenu principal */}
       <div className="container py-4">
         <Routes>
-          {/* Redirection automatique à la connexion */}
           <Route path="/" element={
             <>
               <SignedOut><RedirectToSignIn /></SignedOut>
@@ -114,79 +106,77 @@ function App() {
             </>
           } />
 
-          {/* Pages d'authentification */}
           <Route path="/sign-in" element={
-  <div style={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh', // toute la hauteur de l’écran
-    backgroundColor: '#f9f9f9' // (optionnel) fond plus doux
-  }}>
-    <SignIn
-      routing="path"
-      path="/sign-in"
-      appearance={{
-        variables: {
-          colorPrimary: '#39bbd6',
-          fontFamily: 'Arial, sans-serif',
-          borderRadius: '8px',
-        },
-        elements: {
-          card: {
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-            backgroundColor: '#fff',
-          },
-          formButtonPrimary: {
-            backgroundColor: '#39bbd6',
-            color: 'white',
-            fontWeight: 'bold',
-          },
-          logoBox: {
-            display: 'none'
-          }
-        }
-      }}
-    />
-  </div>
-} />
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100vh',
+              backgroundColor: '#f9f9f9'
+            }}>
+              <SignIn
+                routing="path"
+                path="/sign-in"
+                appearance={{
+                  variables: {
+                    colorPrimary: '#39bbd6',
+                    fontFamily: 'Arial, sans-serif',
+                    borderRadius: '8px',
+                  },
+                  elements: {
+                    card: {
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                      backgroundColor: '#fff',
+                    },
+                    formButtonPrimary: {
+                      backgroundColor: '#39bbd6',
+                      color: 'white',
+                      fontWeight: 'bold',
+                    },
+                    logoBox: {
+                      display: 'none'
+                    }
+                  }
+                }}
+              />
+            </div>
+          } />
 
-<Route path="/sign-up" element={
-  <div style={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    backgroundColor: '#f9f9f9'
-  }}>
-    <SignUp
-      routing="path"
-      path="/sign-up"
-      appearance={{
-        variables: {
-          colorPrimary: '#39bbd6',
-          fontFamily: 'Arial, sans-serif',
-          borderRadius: '8px',
-        },
-        elements: {
-          card: {
-            boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-            backgroundColor: '#fff',
-          },
-          formButtonPrimary: {
-            backgroundColor: '#39bbd6',
-            color: 'white',
-            fontWeight: 'bold',
-          },
-          logoBox: {
-            display: 'none'
-          }
-        }
-      }}
-    />
-  </div>
-} />
-
+          <Route path="/sign-up" element={
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100vh',
+              backgroundColor: '#f9f9f9'
+            }}>
+              <SignUp
+                routing="path"
+                path="/sign-up"
+                appearance={{
+                  variables: {
+                    colorPrimary: '#39bbd6',
+                    fontFamily: 'Arial, sans-serif',
+                    borderRadius: '8px',
+                  },
+                  elements: {
+                    card: {
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                      backgroundColor: '#fff',
+                    },
+                    formButtonPrimary: {
+                      backgroundColor: '#39bbd6',
+                      color: 'white',
+                      fontWeight: 'bold',
+                    },
+                    logoBox: {
+                      display: 'none'
+                    }
+                  }
+                }}
+              />
+            </div>
+          } />
 
           {/* Pages sécurisées */}
           <Route path="/clients" element={<SignedIn><ClientList /></SignedIn>} />
@@ -196,7 +186,7 @@ function App() {
           <Route path="/devis" element={<SignedIn><DevisList /></SignedIn>} />
           <Route path="/facture" element={<SignedIn><FactureList /></SignedIn>} />
 
-          {/* Impressions accessibles même sans être connecté */}
+          {/* Pages d’impression (accessibles sans connexion) */}
           <Route path="/print-order/:orderId" element={<PrintOrder />} />
           <Route path="/print-devis/:devisId" element={<PrintDevis />} />
           <Route path="/print-facture/:factureId" element={<PrintFacture />} />
